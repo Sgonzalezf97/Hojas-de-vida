@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+     <title>Students</title>
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/estilo.css') }}">
+   </head>
+   <body>
+    <nav>
+      <a href = "{{ url_for('show_all') }}">Mostrar todos los Estudiantes</a> |
+      <a href = "{{ url_for('new') }}">Añadir Estudiante</a>  |
+      <a href = "{{ url_for('new_academic') }}">Añadir Historia Academica</a> |
+      <a href = "{{ url_for('interes') }}">Adicionar Intereses</a> |
+      <a href = "{{ url_for('upload_file') }}">Upload new file</a>
+    </nav>
+      <aside>
+        {%- for message in get_flashed_messages() %}
+           {{ message }}
+        {%- endfor %}
+      </aside>
+      <section>      
+        <h3>Hojas de vida</h3>
+
+        <table>
+          <thead>
+              <tr>
+                 <th>Documento</th>
+                 <th>Primer Nombre</th>
+                 <th>Segundo Nombre</th>
+                 <th>Primer Apellido</th>
+                 <th>Segundo Apellido</th>
+                 <th>Celular</th>
+                 <th>Correo </th>
+                 <th>Dirección </th>
+                 <th colspan="2">Opciones</th>
+              </tr>
+           </thead>
+           
+           <tbody>
+              {% for r in rows %}
+                 <tr>
+                    <td>{{ r.documento }}</td>
+                    <td>{{ r.primer_nombre }}</td>
+                    <td>{{ r.segundo_nombre }}</td>
+                    <td>{{ r.primer_apellido }}</td>
+                    <td>{{ r.segundo_apellido }}</td>
+                    <td>{{ r.celular }}</td>
+                    <td>{{ r.correo }}</td>
+                    <td>{{ r.direccion }}</td>
+                    <td>
+                      <form method="POST" action="/update" style="display: inline">
+                        <input type="hidden" value="{{r.id}}" name="id">
+                        <input type="submit" value="Update">
+                      </form>
+                    </td>
+                    <td>
+                      <form method="POST" action="/delete" style="display: inline">
+                        <input type="hidden" value="{{r.id}}" name="id">
+                        <input type="submit" value="Delete">
+                      </form>
+                    </td>
+                 </tr>
+              {% endfor %}
+           </tbody>
+        </table>
+
+    </section>
+
+   </body>
+</html>

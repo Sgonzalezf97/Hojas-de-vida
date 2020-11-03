@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Images</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/estilo.css') }}">
+  </head>
+   <body>
+    <nav>
+         <a href = "{{ url_for('show_all') }}">Mostrar todos los Estudiantes</a> |
+      <a href = "{{ url_for('new') }}">Añadir Estudiante</a>  |
+      <a href = "{{ url_for('new_academic') }}">Añadir Historia Academica</a> |
+      <a href = "{{ url_for('interes') }}">Adicionar Intereses</a> |
+      <a href = "{{ url_for('upload_file') }}">Subir la foto</a>
+      </nav>
+      
+      {% for data in rows %}
+           
+      <img src="{{ url_for('static', filename=data) }}" width="200px"><br>
+      
+    
+      {% endfor %}
+   </body>
+</html>

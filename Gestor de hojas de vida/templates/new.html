@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nuevo Estudiante</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/estilo.css') }}">
+</head>
+<body>
+   <nav>
+      <a href = "{{ url_for('show_all') }}">Mostrar todos los Estudiantes</a> |
+      <a href = "{{ url_for('new') }}">Añadir Estudiante</a>  |
+      <a href = "{{ url_for('new_academic') }}">Añadir Historia Academica</a> |
+      <a href = "{{ url_for('interes') }}">Adicionar Intereses</a> |
+      <a href = "{{ url_for('upload_file') }}">Upload new file</a>
+   </nav>
+      <section>
+      <h3>Registro</h3>
+
+      {%- for category, message in get_flashed_messages(with_categories = true) %}
+         <div class = "alert alert-danger">
+            {{ message }}
+         </div>
+      {%- endfor %}
+
+      <form action = "{{ request.path }}" method = "post">
+         <label for = "name">Documento</label>
+         <input type = "text" name = "documento" placeholder = "Documento de identidad" /><br>
+         <label for = "primer_nombre">Primer nombre</label>
+         <input type = "text" name = "primer_nombre" placeholder = "primer nombre" /><br>
+         <label for = "segundo_nombre">Segundo nombre</label>
+         <input type = "text" name = "segundo_nombre" placeholder = "segundo nombre" /><br>
+         <label for = "primer_apellido">Primer apellido</label>
+         <input type = "text" name = "primer_apellido" placeholder = "primer apellido" /><br>
+         <label for = "segundo_apellido">Segundo apellido</label>
+         <input type = "text" name = "segundo_apellido" placeholder = "segundo apellido" /><br>
+         <label for = "celular">Celular</label>
+         <input type = "text" name = "celular" placeholder = "celular" /><br>
+         <label for = "correo">Correo</label>
+         <input type = "text" name = "correo" placeholder = "correo" /><br>
+         
+         <label for = "direccion">Direccion</label>
+         <textarea name = "direccion" placeholder = "direccion"></textarea><br>
+         
+         <input type = "submit" value = "Submit" />
+      </form>
+    </section>
+   </body>
+</html>
